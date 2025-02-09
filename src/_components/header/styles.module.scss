@@ -1,0 +1,86 @@
+@use "../../styles/main.scss";
+
+.sidebar {
+  padding: 0;
+  margin: 0;
+  background-color: main.$color_primary;
+  width: min(100%, 300px);
+
+  .bannerProfile {
+    background: url("../../assets/cover.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    display: flex;
+    place-content: center;
+    place-items: center;
+
+    > img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: drop-shadow(2px 3px 6px main.$bg_gray_500);
+      -webkit-filter: drop-shadow(2px 3px 6px main.$bg_gray_500);
+    }
+  }
+
+  .sidebarMenu {
+    padding-top: 1.5rem;
+    margin-inline: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    justify-content: center;
+    height: min-content;
+    color: main.$gray_200;
+
+    a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5em;
+      font-size: 1.3em;
+      font-weight: 400;
+      background: transparent;
+      border-radius: 8px;
+      padding: 8px 16px;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background-color: rgba(245, 255, 230, 0.2);
+        color: #9acbd0 !important;
+      }
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    height: auto;
+    place-content: center;
+    place-items: center;
+    gap: 0.5rem;
+
+    .bannerProfile {
+      width: 100%;
+      height: fit-content;
+
+      > img {
+        margin: 1em 0;
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .sidebarMenu {
+      margin: 0.5em 0;
+      width: 100%;
+      padding-top: 0;
+      margin-inline: 0;
+      flex-direction: row;
+      gap: 0px;
+      justify-content: space-around;
+    }
+  }
+}

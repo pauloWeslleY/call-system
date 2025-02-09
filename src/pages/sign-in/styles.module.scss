@@ -1,0 +1,94 @@
+@use "../../styles/main.scss";
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: main.$bg_gray_500;
+  padding: 0 12px;
+
+  .signInWrapper {
+    background-color: main.$color_secondary;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: main.$rounded_form;
+
+    .formLogoSignIn {
+      background-color: main.$color_primary;
+      border-top-left-radius: main.$rounded_top_form;
+      border-top-right-radius: main.$rounded_top_form;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      > img {
+        width: 170px;
+        height: 130px;
+        padding: 20px;
+      }
+    }
+
+    form {
+      margin-top: 1.5rem;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      h1 {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: main.$color_primary;
+      }
+
+      input {
+        height: 35px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        padding-inline: 10px;
+        font-size: 15px;
+        background-color: main.$gray_200;
+      }
+
+      button {
+        height: 35px;
+        border: none;
+        border-radius: 8px;
+        background-color: main.$color_primary;
+        color: main.$gray_200;
+        font-size: 1.3em;
+      }
+
+      .formAlertSignIn {
+        @include main.form-alert-message;
+      }
+    }
+
+    .formFooterSignIn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1.5rem;
+
+      span {
+        font-size: 0.95em;
+        color: main.$color_primary;
+      }
+
+      a {
+        color: main.$black;
+        transition: color 0.3s ease;
+        font-weight: 600;
+
+        &:hover {
+          color: main.$link_hover;
+        }
+      }
+    }
+  }
+}

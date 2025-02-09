@@ -1,0 +1,169 @@
+@use "../../styles/main.scss";
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+
+  .dashboardContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    align-items: center;
+    padding: 0.8em;
+
+    .tableTicketsEmpty {
+      > span {
+        font-size: 1.4em;
+        font-weight: 500;
+      }
+    }
+
+    a {
+      align-self: flex-end;
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      background-color: main.$teal_400;
+      color: main.$teal_950;
+      padding: 6px 13px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        background: main.$teal_600;
+        transform: scale(1.02);
+      }
+    }
+
+    table {
+      border: 2px solid main.$gray_200;
+      border-radius: main.$rounded_form;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+
+      tr {
+        background-color: main.$bg_white_light;
+        border: 2px solid main.$gray_200;
+        border-radius: main.$rounded_form;
+      }
+
+      th,
+      td {
+        padding: 0.6em;
+        text-align: center;
+        font-weight: 500;
+        color: main.$slate_900;
+      }
+
+      th {
+        font-size: 1em;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      caption {
+        font-size: 1.5em;
+        margin: 0.5em 0 0.75em;
+      }
+
+      .tableActions {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .actions {
+          display: flex;
+          gap: 0.5em;
+        }
+      }
+
+      .iconButtonTable {
+        line-height: 0;
+        border-radius: 50%;
+        border: none;
+        padding: 8px;
+        transition: ease-in-out 0.3s;
+      }
+
+      .iconButtonEdit {
+        background: main.$blue_300;
+        color: main.$blue_950;
+
+        &:hover {
+          background-color: main.$blue_500;
+        }
+      }
+
+      .iconButtonSearch {
+        background: main.$orange_300;
+        color: main.$orange_950;
+
+        &:hover {
+          background-color: main.$orange_500;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .dashboardContent {
+      table {
+        border: none;
+
+        caption {
+          font-size: 1.3em;
+        }
+
+        thead {
+          border: none;
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          position: absolute;
+          width: 1px;
+        }
+
+        th {
+          border-bottom: 1px solid main.$gray_200;
+          display: block;
+          margin-bottom: 0.6em;
+        }
+
+        td {
+          border-bottom: 1px solid main.$gray_200;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 1.1em;
+          text-align: right;
+        }
+
+        td::before {
+          content: attr(data-label);
+          font-size: 1.2em;
+          font-weight: 600;
+        }
+
+        .tableActions {
+          justify-content: space-between;
+          align-items: center;
+
+          .actions {
+            display: flex;
+            gap: 0.5em;
+          }
+        }
+      }
+    }
+  }
+}

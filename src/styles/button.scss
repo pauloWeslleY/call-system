@@ -1,0 +1,9 @@
+@mixin button-default($bg-color, $text-color) {
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: $bg-color;
+  color: $text-color;
+  font-size: 1.5em;
+}

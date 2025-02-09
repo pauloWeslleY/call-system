@@ -1,0 +1,14 @@
+@use "./variables";
+
+@mixin form-alert-message {
+  border-radius: 8px;
+  padding: 0.5rem;
+  background-color: variables.$red_600;
+  color: variables.$gray_200;
+  text-align: center;
+
+  > span {
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+}

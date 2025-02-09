@@ -1,0 +1,85 @@
+@use "../../styles//main";
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgb(160 160 160 / 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+
+  .modalWrapper {
+    background-color: main.$bg_white_light;
+    border: 2px solid main.$gray_200;
+    border-radius: main.$rounded_form;
+    padding: 2em;
+    max-width: 950px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
+    position: fixed;
+    top: 15%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.3em;
+      background-color: main.$color_secondary;
+      color: main.$zinc_800;
+      transition: background-color 0.3s ease-in;
+
+      &:hover {
+        background-color: main.$bg_gray_light;
+        color: main.$color_primary;
+      }
+    }
+
+    h3 {
+      font-weight: 500;
+      font-size: 1.4em;
+      color: main.$zinc_800;
+    }
+  }
+
+  .modalContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    .modalContent {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.2em;
+
+      span {
+        font-size: 1.3em;
+        font-weight: 600;
+        color: main.$color_primary;
+      }
+
+      p {
+        font-size: 1.2em;
+        color: main.$zinc_800;
+      }
+    }
+
+    .modalComplement {
+      flex-direction: column;
+    }
+  }
+}

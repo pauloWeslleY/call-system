@@ -1,0 +1,19 @@
+@use "../../styles/main.scss";
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin: 1em 0;
+  padding: 0.8em;
+  border-radius: 10px;
+  background-color: main.$bg_gray_light;
+  color: main.$color_primary;
+
+  > h2 {
+    font-size: 1.8em;
+    font-weight: 500;
+  }
+}
