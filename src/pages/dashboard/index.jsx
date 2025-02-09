@@ -73,8 +73,7 @@ export default function Dashboard() {
                         <div className={styles.actions}>
                           <button
                             onClick={handleOpenModalTicket(ticket.id)}
-                            className={classNames({
-                              [styles.iconButtonTable]: true,
+                            className={classNames(styles.iconButtonTable, {
                               [styles.iconButtonEdit]: true,
                             })}
                           >
@@ -83,8 +82,7 @@ export default function Dashboard() {
 
                           <button
                             onClick={() => navigateUpdateTicket(ticket.id)}
-                            className={classNames({
-                              [styles.iconButtonTable]: true,
+                            className={classNames(styles.iconButtonTable, {
                               [styles.iconButtonSearch]: true,
                             })}
                           >

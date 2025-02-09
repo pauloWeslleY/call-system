@@ -3,16 +3,17 @@ import { Link } from "react-router";
 import logo from "../../assets/logo.png";
 import styles from "./styles.module.scss";
 import { useSignIn } from "./hooks/useSignIn";
+import RegexValidation from "../../constants/regex-validation";
+import classNames from "classnames";
 
 export default function SignIn() {
   const {
-    email,
-    password,
+    errors,
+    register,
     isPendingSignIn,
     validateFormSignIn,
     onErrorMessageFormSignIn,
-    onChangeInputSignInEmail,
-    onChangeInputSignInPassword,
+    handleSubmit,
     handleSignIn,
   } = useSignIn();
 
@@ -23,23 +24,52 @@ export default function SignIn() {
           <img src={logo} alt="Logo do sistema de chamados" />
         </div>
 
-        <form autoComplete="off" onSubmit={handleSignIn}>
+        <form autoComplete="off" onSubmit={handleSubmit(handleSignIn)}>
           <h1>Entrar</h1>
-          <input
-            type="text"
-            placeholder="email@email.com"
-            value={email}
-            onChange={onChangeInputSignInEmail}
-          />
 
-          <input
-            type="password"
-            placeholder="***********"
-            value={password}
-            onChange={onChangeInputSignInPassword}
-          />
+          <div className={styles.formControl}>
+            <input
+              {...register("email", {
+                required: "Informe seu e-mail",
+                pattern: {
+                  value: RegexValidation.EMAIL,
+                  message: "Formato de e-mail inválido",
+                },
+              })}
+              id="email"
+              type="email"
+              placeholder="email@email.com"
+            />
+            {errors.email && (
+              <span className={styles.formStateError}>
+                {errors.email.message}
+              </span>
+            )}
+          </div>
 
-          <button type="submit" disabled={isPendingSignIn}>
+          <div className={styles.formControl}>
+            <input
+              {...register("password", {
+                required: "Informe sua senha",
+              })}
+              id="password"
+              type="password"
+              placeholder="***********"
+            />
+            {errors.password && (
+              <span className={styles.formStateError}>
+                {errors.password.message}
+              </span>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className={classNames(styles.buttonSignIn, {
+              [styles.buttonSignInLoading]: isPendingSignIn,
+            })}
+            disabled={isPendingSignIn}
+          >
             {isPendingSignIn ? "Carregando..." : "Acessar"}
           </button>
 

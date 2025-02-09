@@ -62,7 +62,7 @@ const ticketServices = {
     return tickets;
   },
   getId: async (ticketId) => {
-    const ticketDetailsRef = ref(firebaseApp.database(), `tickets/${ticketId}`);
+    const ticketDetailsRef = ref(firebaseApp.database(), ticketPath(ticketId));
     const dataTicketDetail = {};
 
     try {

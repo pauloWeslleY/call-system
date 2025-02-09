@@ -63,9 +63,7 @@ export function useDashboard() {
     return hasValidTicket[ticket] ?? false;
   }
 
-  function hasTableTickets() {
-    return tickets.length !== 0;
-  }
+  const hasTableTickets = () => tickets.length !== 0;
 
   function navigateUpdateTicket(ticketId) {
     navigate(`/dashboard/update-ticket/${ticketId}`);

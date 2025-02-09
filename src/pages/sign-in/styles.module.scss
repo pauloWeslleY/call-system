@@ -45,23 +45,47 @@
         color: main.$color_primary;
       }
 
-      input {
-        height: 35px;
-        border-radius: 8px;
-        border: none;
-        outline: none;
-        padding-inline: 10px;
-        font-size: 15px;
-        background-color: main.$gray_200;
+      .formControl {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2em;
+
+        input {
+          height: 35px;
+          border-radius: 8px;
+          border: none;
+          outline: none;
+          padding-inline: 10px;
+          font-size: 15px;
+          background-color: main.$gray_200;
+        }
+
+        .formStateError {
+          font-size: 0.95em;
+          font-weight: 500;
+          align-self: flex-start;
+          color: main.$red_600;
+          padding-left: 0.3em;
+        }
       }
 
-      button {
+      .buttonSignIn {
         height: 35px;
         border: none;
         border-radius: 8px;
         background-color: main.$color_primary;
         color: main.$gray_200;
         font-size: 1.3em;
+
+        &:disabled {
+          cursor: not-allowed;
+        }
+      }
+
+      .buttonSignInLoading {
+        background-color: main.$bg_gray_light;
+        color: main.$bg_gray_500;
+        cursor: not-allowed;
       }
 
       .formAlertSignIn {

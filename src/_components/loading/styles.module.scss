@@ -1,5 +1,14 @@
 @use "../../styles/main";
 
+@keyframes animatedLoading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .backDropLoading {
   position: fixed;
   inset: 0;
@@ -16,8 +25,9 @@
     width: fit-content;
 
     display: flex;
-    flex-direction: column;
-    gap: 2em;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
 
     position: fixed;
     top: 45%;
@@ -29,6 +39,10 @@
     span {
       font-size: 2em;
       font-weight: 500;
+    }
+
+    svg {
+      animation: animatedLoading 1s linear infinite;
     }
   }
 }

@@ -29,13 +29,21 @@ export function useAuth() {
     return error?.error ?? "Ops, Algo de errado aconteceu!";
   }
 
+  function hasValidUserAuthenticated(data) {
+    if (!data.accessToken) {
+      navigate("/", { replace: true });
+      return;
+    }
+    setUser(data);
+    navigate("/dashboard", { replace: true });
+  }
+
   async function handleLogin({ email, password }) {
     setIsPending(true);
 
     try {
       const userAuth = await authenticationServices.signIn({ email, password });
-      setUser(userAuth);
-      navigate("/dashboard", { replace: true });
+      hasValidUserAuthenticated(userAuth);
     } catch (err) {
       setError({ isError: true, error: err.message });
       setIsPending(false);
@@ -44,13 +52,16 @@ export function useAuth() {
     }
   }
 
-  async function handleRegister(data) {
+  async function handleRegister({ username, email, password }) {
     setIsPending(true);
 
     try {
-      const userAuth = await authenticationServices.signUp({ ...data });
-      setUser(userAuth);
-      navigate("/dashboard", { replace: true });
+      const userAuth = await authenticationServices.signUp({
+        username,
+        email,
+        password,
+      });
+      hasValidUserAuthenticated(userAuth);
     } catch (err) {
       setError({ isError: true, error: err.message });
       setIsPending(false);

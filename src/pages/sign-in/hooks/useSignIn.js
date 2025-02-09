@@ -1,23 +1,29 @@
-import { useState } from "react";
-import { useAuth } from "../../../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../../../hooks/useAuth";
 
 export function useSignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    reset,
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    mode: "all",
+    reValidateMode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
   const { isPending, validateForm, onErrorMessageForm, handleLogin } =
     useAuth();
 
-  function onChangeInputSignInEmail(event) {
-    setEmail(event.target.value);
-  }
-
-  function onChangeInputSignInPassword(event) {
-    setPassword(event.target.value);
-  }
+  const showLoadingSignIn = () => isSubmitting || isPending;
 
   function validFormSignIn() {
-    if (!email && !password) {
+    if (errors.email || errors.password) {
       toast.warning("Preencha os campos");
       return true;
     }
@@ -25,24 +31,27 @@ export function useSignIn() {
     return false;
   }
 
-  async function handleSignIn(event) {
-    event.preventDefault();
+  async function handleSignIn(data) {
     if (validFormSignIn()) return;
 
-    await handleLogin({ email, password }).then(() => {
-      setEmail("");
-      setPassword("");
-    });
+    try {
+      await handleLogin({
+        email: data.email,
+        password: data.password,
+      });
+      reset();
+    } catch {
+      throw new Error("Algo de errado aconteceu");
+    }
   }
 
   return {
-    email,
-    password,
-    isPendingSignIn: isPending,
+    errors,
+    register,
+    handleSubmit,
+    handleSignIn,
+    isPendingSignIn: showLoadingSignIn(),
     validateFormSignIn: validateForm,
     onErrorMessageFormSignIn: onErrorMessageForm,
-    handleSignIn,
-    onChangeInputSignInEmail,
-    onChangeInputSignInPassword,
   };
 }

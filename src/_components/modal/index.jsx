@@ -18,7 +18,8 @@ export default function Modal({ data, onClose }) {
 
         <div className={styles.modalContainer}>
           <div className={styles.modalContent}>
-            <span>Cliente:</span> <p>{data.customer.customer}</p>
+            <span>Cliente:</span>{" "}
+            <p>{data.customer?.customer ?? "SEM DADOS"}</p>
           </div>
 
           <div className={styles.modalContent}>
